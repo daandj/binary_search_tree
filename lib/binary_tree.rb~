@@ -1,2 +1,2 @@
-require_relative './node.rb'
+require_relative './binary_tree/node.rb'
 
