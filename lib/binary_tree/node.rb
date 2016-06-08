@@ -1,11 +1,18 @@
 class Node
-  attr_accessor :value
+  attr_accessor :value, :child1, :child2, :parent
 
-  def init(value, parent = nil, child1 = nil, child2 = nil)
-    @value = value
-    @root = true ? parent == nil : @parent = parent
-    @child1 = child1 if child1 != nil
-    @child2 = child2 if child2 != nil
+  def initialize(opts={})
+    @root = true ? opts[:parent] == nil : @parent = opts[:parent]
+    @child1, @child2, @value = opts[:child1], opts[:child2], opts[:value]
+  end
+
+  def children
+    if block_given?
+      yield(@child1) if @child1
+      yield(@child2) if @child2 
+    else
+      nil
+    end
   end
 
 end
