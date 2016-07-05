@@ -1,4 +1,5 @@
 class Tree
+  attr_reader :root
   
   def initialize
     @root = nil
@@ -13,16 +14,38 @@ class Tree
     queue = [@root]
     answer = nil
     while queue.size > 0
-      puts queue[0].value
       if queue[0].value == target
 	answer = target
 	queue.clear
       else
-	queue[0].children { |child| queue << child }
+	queue[0].children { |child| queue << child } 
 	queue.delete_at(0)
       end
     end
     return answer
+  end
+
+  def depth_first_search(target)
+    stack = [@root]
+    answer = nil
+    while stack.size > 0
+      if stack[0].value == target
+	answer = target
+	stack.clear
+      else
+	stack[0].children { |child| stack.insert(1, child) } 
+	stack.delete_at(0)
+      end
+    end
+    return answer
+  end
+  
+  def dfs_rec(target, node=@root)
+    if node.value == target
+      return node.value
+    else
+      node.children { |child| dfs_rec(target, child) }
+    end
   end
 
   private

@@ -10,3 +10,17 @@ if answer
 else
   puts "Didn't find anything."
 end
+
+answer = tree.depth_first_search(9)
+if answer
+  puts "Found: #{answer}"
+else
+  puts "Didn't find anything."
+end
+
+answer = tree.dfs_rec(9)
+if answer
+  puts "Found: #{answer}"
+else
+  puts "Didn't find anything."
+end
